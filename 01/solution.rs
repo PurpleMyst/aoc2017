@@ -1,13 +1,8 @@
-use std::io;
-
 fn main() {
-    let mut inp = String::new();
-    io::stdin().read_line(&mut inp).expect("Could not read from stdin.");
-
-    let v: Vec<u8> = inp.bytes()
-                        .filter(|x| *x >= b'0' && *x <= b'9')
-                        .map(|x| x - b'0')
-                        .collect();
+    let v: Vec<u8> = include_str!("input.txt").trim()
+                                              .bytes()
+                                              .map(|x| x - b'0')
+                                              .collect();
 
     let v_len = v.len();
     let half_v_len = v_len / 2;

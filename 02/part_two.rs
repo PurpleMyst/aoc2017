@@ -1,8 +1,5 @@
-use std::io::BufRead;
-
-fn row_checksum(row: std::io::Result<String>) -> u64 {
-    let numbers: Vec<u64> = row.unwrap()
-                               .split_whitespace()
+fn row_checksum(row: &str) -> u64 {
+    let numbers: Vec<u64> = row.split_whitespace()
                                .map(|n| n.parse().unwrap())
                                .collect();
 
@@ -18,8 +15,7 @@ fn row_checksum(row: std::io::Result<String>) -> u64 {
 }
 
 fn main() {
-    let stdin = std::io::stdin();
-    let checksum: u64 = stdin.lock().lines().map(row_checksum).sum();
+    let checksum: u64 = include_str!("input.txt").lines().map(row_checksum).sum();
 
-    println!("Part Two: {}", checksum);
+    println!("{}", checksum);
 }
